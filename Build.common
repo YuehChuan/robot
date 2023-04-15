@@ -1,0 +1,9 @@
+CC = echo "  $@" && gcc
+LD = echo "  [$(notdir $@)]" && gcc
+AR = echo "  [$(notdir $@)]" && ar
+
+%.o: %.c %.h $(HDEPS)
+	@$(CC) $(CFLAGS) -o $@ -c $(realpath $<) || exit 1
+
+%.o: %.c $(HDEPS)
+	@$(CC) $(CFLAGS) -o $@ -c $(realpath $<) || exit 1
